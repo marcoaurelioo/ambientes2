@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inverter Nome</title>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    form {
+      margin-bottom: 20px;
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Inverter Nome ABNT</h1>
+
+  <form onsubmit="inverterNome(); return false;">
+    <label for="nome">Nome Completo:</label>
+    <input type="text" id="nome" required>
+    <button type="submit">Inverter</button>
+    <button onclick="window.location.href='menu.html'">Voltar</button>
+  </form>
+
+  <p id="resultadoNome"></p>
+
+  <script>
+    function inverterNome() {
+      const nomeCompleto = document.getElementById('nome').value; // Obtém o valor inserido no campo de entrada com o ID 'nome'
+      const partesNome = nomeCompleto.split(' '); // Divide o nome completo em partes separadas com base nos espaços em branco
+      const primeiroNome = partesNome.shift(); // Remove e obtém o primeiro nome
+      const ultimoNome = partesNome.pop(); // Remove e obtém o último nome da lista de partes
+      const nomeAbnt = `${ultimoNome}, ${primeiroNome} ${partesNome.map(nome => nome[0]).join(' ')}`; // Monta o nome no formato ABNT: ÚltimoNome, PrimeiroNome (iniciais dos outros nomes)
+
+      document.getElementById('resultadoNome').textContent = nomeAbnt; // Define o texto do parágrafo com o ID 'resultadoNome' como o nome invertido
+    }
+  </script>
+</body>
+</html>
